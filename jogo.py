@@ -13,6 +13,7 @@ def formatCasa(matriz):
 
 # Faz o layout da tela de acordo com a matriz
 def mostrarTela(tela):
+  print(f'Pontos:\n Jogador 1 (X): {pontos[0]}\n Jogador 2 (O): {pontos[1]}\n'+'-'*20,'\n\n')
   for rep, linha in enumerate(tela):
     for repL, casa in enumerate(linha):
       if repL != 2: 
@@ -85,8 +86,13 @@ def verifQuemJoga(mudar=True, quemJoga='O'):
 # Junta as funções auxiliares e realiza a adição do input na matriz 
 def jogar(mudarQmJoga = True):
   global tela
+  global quemJoga
 
-  quemJoga = verifQuemJoga(mudarQmJoga)
+  try:
+    quemJoga = verifQuemJoga(mudarQmJoga, quemJoga)
+  except:
+    quemJoga = verifQuemJoga(mudarQmJoga)
+
   jogada = receberJogada()
   if jogada == 'invalido': return False
 
@@ -99,12 +105,38 @@ def jogar(mudarQmJoga = True):
   tela = formatCasa(tela)
   ocupado.append(tela[i[0]][i[1]])
 
-  return main()
+  return 
 
 # Verifica se o alguém ganhou ou deu velha
 def verificarGanho():
-  if len(casasOcupadas):
+  if len(casasOcupadas) == 9:
     return 'velha'
+  
+  diagonal = []
+  contraDiagonal = []
+  for l in range(len(tela)):
+    diagonal.append(tela[l][l])
+    contraDiagonal.append(tela[l][len(tela[l])-1-l])
+
+    # linhas
+    if tela[l][0] == tela[l][1] == tela[l][2] and tela[l][0] != '   ': 
+      if tela[l][0] == ' X ':
+        return 'X'
+      else:
+        return 'O'
+    # colunas
+    if tela[0][l] == tela[1][l] == tela[2][l] and tela[0][l] != '   ':
+      if tela[0][l] == ' X ':
+        return 'X'
+      else:
+        return 'O'
+    
+  if diagonal == [' X ', ' X ', ' X ']: return 'X'
+  if diagonal == [' O ', ' O ', ' O ']: return 'O'
+  if contraDiagonal == [' X ', ' X ', ' X ']: return 'X'
+  if contraDiagonal == [' O ', ' O ', ' O ']: return 'O'
+
+  return False
 
 # Atualiza a tela e chama o jogar()
 # mudarQmJoga é passado duas funções a frente para verifQuemJoga()
@@ -112,19 +144,34 @@ def main(mudarQmJoga=True):
   os.system('cls')
   mostrarTela(tela)
 
-  jogadaValida = True 
   jogadaValida = jogar(mudarQmJoga)
 
-  if not jogadaValida:
+  if jogadaValida != None:
     input('Jogada invalida!')
     return main(False) # parametro False para não mudar o print de quem é a vez
+
+  game = verificarGanho()
+  if game != False:
+    os.system('cls')
+    mostrarTela(tela)
+    if game == 'velha':
+      input(f'\nDeu velha!')
+    else:
+      input(f'\nO jogador {game} ganhou!')
+      if game == 'X':
+        pontos[0] += 1
+      else:
+        pontos[1] += 1
+    return
+
+  return main()
 
 
 
 # ===================
 #   Repetir o jogo
 # ===================
-
+pontos = [0,0]
 continuar = True
 while continuar:
 
