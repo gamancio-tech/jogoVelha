@@ -28,7 +28,7 @@ def verifQuemJoga(mudar=True, quemJoga='O'):
       print('2') # Precisa ser invertido para continuar o que era antes
   else:
     if mudar:
-      quemJoga = "O"
+      quemJoga = 'O'
       print('2')
     else:
       print('1')

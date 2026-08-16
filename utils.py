@@ -7,7 +7,7 @@ def formatCasa(tela, casa = None):
   else:
     for l in range(len(tela)):
       for c in range(len(tela[l])):
-        if tela[l][c] == "" or tela[l][c] == '   ': 
+        if tela[l][c] == '' or tela[l][c] == '   ': 
           tela[l][c] = '   '
         else:
           if ' ' not in tela[l][c]:

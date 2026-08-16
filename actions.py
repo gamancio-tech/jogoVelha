@@ -7,7 +7,7 @@ from robot import calcularJogada
 
 # JOGADA ROBO
 def jogadaRobo(tela, quemJoga):
-  input("Vez do robo\n(aperte enter para ver o movimento)")
+  input('Vez do robo\n(aperte enter para ver o movimento)')
   
   jogada = calcularJogada(tela, quemJoga) # Recebe lista com linha e coluna
   tela[jogada[0]][jogada[1]] = quemJoga
@@ -37,7 +37,7 @@ def receberJogada():
     print('(Digite 0 para encerrar o jogo)')
     jogada = int(input('Digite uma casa de 1 a 9 para jogar: ')) 
   except ValueError:
-    print("Digite um número!")
+    print('Digite um número!')
     return 'invalido'
 
   # Encerrar o jogo

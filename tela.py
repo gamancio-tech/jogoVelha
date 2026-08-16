@@ -6,9 +6,9 @@ def mostrarTela(tela, pontos):
   for rep, linha in enumerate(tela):
     for repL, casa in enumerate(linha):
       if repL != 2: 
-        print(casa, end="|")
+        print(casa, end='|')
       else: 
-        print(casa, end="\n")
+        print(casa, end='\n')
     if rep != 2:
       print('-----------')
 
