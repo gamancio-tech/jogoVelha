@@ -1,6 +1,6 @@
 from os import system
 from tela import layoutTela
-from verification import verificarCasas
+from verification import verificarCasasOcupadas
 from main import main
 
 # ===================
@@ -13,7 +13,7 @@ while continuar:
 
   # variaveis iniciais 
   tela = layoutTela()
-  verificarCasas(True)
+  verificarCasasOcupadas(True)
 
   # Roda
   pontos = main(tela, True, pontos)

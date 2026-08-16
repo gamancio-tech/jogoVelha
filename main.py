@@ -7,7 +7,7 @@ from verification import verificarGanho
 # Atualiza a tela e chama o jogar()
 # mudarQmJoga é passado duas funções a frente para verifQuemJoga()
 # pyrefly: ignore [parse-error]
-def main(tela, mudarQmJoga=True, pontos = 0):
+def main(tela, mudarQmJoga=True, pontos=0):
   system('cls')
   mostrarTela(tela, pontos)
 

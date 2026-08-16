@@ -1,15 +1,19 @@
 
 # Adiciona os espaços para os dados da matriz para ficar alinhado na tela 
-def formatCasa(tela):
-  for l in range(len(tela)):
-    for c in range(len(tela[l])):
-      if tela[l][c] == "" or tela[l][c] == '   ': 
-        tela[l][c] = '   '
-      else:
-        if ' ' not in tela[l][c]:
-          tela[l][c] = f' {tela[l][c]} '
-  return tela
-
+def formatCasa(tela, casa = None):
+  if casa:
+    casa = f' {casa} '
+    return casa
+  else:
+    for l in range(len(tela)):
+      for c in range(len(tela[l])):
+        if tela[l][c] == "" or tela[l][c] == '   ': 
+          tela[l][c] = '   '
+        else:
+          if ' ' not in tela[l][c]:
+            tela[l][c] = f' {tela[l][c]} '
+    return tela
+    
 
 # Converte de 1 a 9 recebido pelo usuário para o indice da matriz
 def converterJogada(jogada):

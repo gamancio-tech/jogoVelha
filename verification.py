@@ -3,7 +3,7 @@
 
 casasOcupadas = []
 
-def verificarCasas(reset, casaJogada = None):
+def verificarCasasOcupadas(reset, casaJogada = None):
   global casasOcupadas
 
   if reset:
@@ -39,28 +39,30 @@ def verifQuemJoga(mudar=True, quemJoga='O'):
 def verificarGanho(tela):
   diagonal = []
   contraDiagonal = []
+  
   for l in range(len(tela)):
     diagonal.append(tela[l][l])
     contraDiagonal.append(tela[l][len(tela[l])-1-l])
 
-    # linhas
+    # Linhas
     if tela[l][0] == tela[l][1] == tela[l][2] and tela[l][0] != '   ': 
       if tela[l][0] == ' X ':
         return 'X'
       else:
         return 'O'
-    # colunas
+
+    # Colunas
     if tela[0][l] == tela[1][l] == tela[2][l] and tela[0][l] != '   ':
       if tela[0][l] == ' X ':
         return 'X'
       else:
         return 'O'
     
-  if diagonal == [' X ', ' X ', ' X ']: return 'X'
-  if diagonal == [' O ', ' O ', ' O ']: return 'O'
-  if contraDiagonal == [' X ', ' X ', ' X ']: return 'X'
-  if contraDiagonal == [' O ', ' O ', ' O ']: return 'O'
+  # Diagonais
+  if diagonal == [' X ', ' X ', ' X '] or contraDiagonal == [' X ', ' X ', ' X ']: return 'X'
+  if diagonal == [' O ', ' O ', ' O '] or contraDiagonal == [' O ', ' O ', ' O ']: return 'O'
 
+  # Velha
   if len(casasOcupadas) == 9:
     return 'velha'
   
